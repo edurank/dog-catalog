@@ -43,6 +43,7 @@ function DogList({ dogData }) {
       </Box>
       <Box sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 'md', overflow: 'hidden' }}>
         {paginatedData.map((item, index) => (
+            <Link to={`dog/${item.id}`} state={{dog: item}} style={{ textDecoration: 'none', color: 'inherit' }}>
           <Box
             key={index}
             sx={{
@@ -60,7 +61,6 @@ function DogList({ dogData }) {
             }}
           >
 
-            <Link to={`dog/${item.id}`} state={{dog: item}} style={{ textDecoration: 'none', color: 'inherit' }}>
               <div>
                 <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{item.name}</Typography>
                 <div style={{display: 'flex', alignItems: 'center'}}>
@@ -68,8 +68,8 @@ function DogList({ dogData }) {
                   <Typography variant="body1" sx={{ textAlign: 'right' }}>{item.life_span}</Typography>
                 </div>
               </div>
-            </Link>
           </Box>
+            </Link>
         ))}
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>

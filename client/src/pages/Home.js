@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { DogAPI, DogData, GetDogBreedData } from '../components/dogapi';
+import { DogAPI, DogData, GetDogBreedData, getTestData, getPopularByCountry } from '../components/dogapi';
 import Header from '../components/Header';
 import LoadingIcon from '../components/LoadingIcon';
 import DogList from '../components/DogList';
-import { Box, Tab, Tabs, TabList, Typography, TabPanel } from '@mui/joy';
+import { Box, Card, CardContent, Tab, Tabs, TabList, Typography, TabPanel } from '@mui/joy';
+import Autocomplete from '@mui/joy/Autocomplete';
+import Grid from '@mui/joy/Grid';
+import { CardMedia } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const [dogList, setDogList] = useState(null);
   const [selectedTab, setSelectedTab] = useState(0);
-
+  const [testData, setTestData] = useState([]);
+    
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   }
@@ -22,11 +27,21 @@ export default function Home() {
       .catch(error => {
         console.error(error);
       });
+    getPopularByCountry()
+      .then((data) => {
+        setTestData(data);
+      })
+        .catch(error => {
+          console.error(error);
+        });
   }
 
   useEffect(() => {
     getDogData();
   }, []);
+
+  useEffect(() => {
+  }, [selectedTab]);
     
   const cssContainer = {
     width: '100%',
@@ -35,6 +50,26 @@ export default function Home() {
     alignItems: 'center'
   }
   
+  const onAutocompleteChange = (event, newValue) => {
+    getPopularByCountry(newValue.id)
+      .then((data) => {
+        setTestData(data);
+      })
+        .catch(error => {
+          console.error(error);
+        });
+  }
+
+  const countries = [
+    {label: 'Brazil', id: 'BR'},
+    {label: 'France', id: 'FR'},
+    {label: 'Australia', id: 'AU'},
+    {label: 'Canada', id: 'CA'},
+    {label: 'Germany', id: 'DE'},
+    {label: 'Japan', id: 'JP'},
+    {label: 'India', id: 'IN'}
+  ]
+
   return (
     <div> 
       <Header />
@@ -56,7 +91,32 @@ export default function Home() {
 
         <TabPanel value={1}>
               <Box>
-                <Typography variant="body1" sx={{ fontWeight: 'bold' }}>Currently under maintenance. It will be available as soon as the server is set up.</Typography>
+                <Autocomplete
+                  placeholder='select country...'
+                  options={countries}
+                  onChange={onAutocompleteChange}
+                />
+                <Grid container spacing={2}>
+                  {Array.isArray(testData) && testData.map((item, index) => (
+                    <Grid item xs={12} sm={6} md={4} key={item.id}>
+                    <Link to={`dog/${item.id}`} state={{dog: item}} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <Card>
+                        <CardMedia
+                          component="img"
+                          alt={item.name}
+                          image={item.image_url}
+                          sx={{ height: 150, objectFit: 'contain' }} // Adjust the height as needed
+                        />
+                        <CardContent>
+                          <Typography variant="h6" align="center">
+                            {item.name}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                      </Link>
+                    </Grid>
+                  ))}
+                </Grid>
               </Box>
         </TabPanel>
       </Tabs>
