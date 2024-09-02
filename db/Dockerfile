@@ -1,9 +1,7 @@
-FROM mariadb:11.5
+FROM mariadb:latest
 
-ENV MARIADB_ROOT_PASSWORD=passwd
+ENV MYSQL_ROOT_PASSWORD=passwd1!2@3#
 ENV MYSQL_DATABASE=dogcatalog
-ENV MYSQL_USER=userf
-ENV MYSQL_PASSWORD=passwd
 
 COPY ./backup.sql /docker-entrypoint-initdb.d/
 
