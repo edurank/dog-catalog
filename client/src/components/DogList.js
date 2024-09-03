@@ -69,7 +69,7 @@ function DogList({ dogData }) {
               <div>
                 <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{item.name}</Typography>
                 <div style={{display: 'flex', alignItems: 'center'}}>
-                  <img src="/images/heart.svg" width={12} height={12} style={{marginRight: '4px'}} />
+                  <img src="/images/heart-life.png" width={22} height={22} style={{marginRight: '4px'}} />
                   <Typography variant="body1" sx={{ textAlign: 'right' }}>{item.life_span}</Typography>
                 </div>
               </div>
