@@ -95,10 +95,18 @@ export default function DogDetails ({ dogId }) {
                       </Box>
                       <Box>
                         <Typography level="body2" fontWeight="bold">
-                          Origin:
+                          Height:
                         </Typography>
                         <Typography level="body2" sx={{ color: 'neutral.600' }}>
-                          {dog.origin || 'Unknown'}
+                          {dog.height_metric + "cm" || 'Unknown'}
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Typography level="body2" fontWeight="bold">
+                          Weight:
+                        </Typography>
+                        <Typography level="body2" sx={{ color: 'neutral.600' }}>
+                          {dog.weight_metric + "kg" || 'Unknown'}
                         </Typography>
                       </Box>
                     </Stack>
