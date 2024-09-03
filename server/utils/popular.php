@@ -8,7 +8,6 @@ include 'db.php';
 
 $query = "SELECT * FROM popularity";
 $response = $conn->query($query);
-
 if ($response->num_rows > 0) {
   while($row = $response->fetch_assoc()) {
       echo implode(", ", $row);
