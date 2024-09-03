@@ -8,5 +8,3 @@ ENV MARIADB_PASSWORD=passwd1!2@3#
 COPY ./backup.sql /docker-entrypoint-initdb.d/
 
 EXPOSE 3306
-
-CMD ["mysqld"]
