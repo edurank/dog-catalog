@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mariadb:10.6
 
 ENV MYSQL_ROOT_PASSWORD=passwd1!2@3#
 ENV MYSQL_DATABASE=dogcatalog
