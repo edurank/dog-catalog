@@ -19,11 +19,7 @@ export const getTestData = () => {
 export const GetDogBreedData = () => {
     var config = {
         method: 'GET',
-        url: process.env.REACT_APP_API_URL + "/breeds?",//limit=25&page=0",
-        headers: {
-            'Content-Type': 'application/json',
-            'x-auth-key': process.env.REACT_APP_API_KEY
-        }
+        url: 'https://dog-catalog.onrender.com/utils/dogs.php'
     }
 
     return axios(config)
