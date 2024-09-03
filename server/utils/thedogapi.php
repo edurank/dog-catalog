@@ -60,6 +60,29 @@ function getDogImageUrl($imgUrl) {
     return $rData['url'];
 }
 
+function getRandomList() {
+    global $conn;
+
+    $random_num = 50;
+
+    $stmt = $conn->prepare("CALL GetRandomDogs(?)");
+    $stmt->bind_param("s", $random_num);
+    
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+
+        $breeds = [];
+        while ($row = $result->fetch_assoc()) {
+            $breeds[] = $row;
+        }
+
+        echo json_encode($breeds);
+    } else {
+        echo "Error: " . $stmt->error . "<br>";
+    }
+    
+}
+
 function getBreedsByPopularity($countryCode) {
     global $conn;
 

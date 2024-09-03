@@ -90,12 +90,24 @@ export default function Home() {
         </TabPanel>
 
         <TabPanel value={1}>
-              <Box>
+              <Box
+              > 
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}
+              >
+
                 <Autocomplete
                   placeholder='select country...'
                   options={countries}
                   onChange={onAutocompleteChange}
+                  sx={{
+                    maxWidth: '400px'
+                  }}
                 />
+              </Box>
                 <Grid container spacing={2}>
                   {Array.isArray(testData) && testData.map((item, index) => (
                     <Grid item xs={12} sm={6} md={4} key={item.id}>

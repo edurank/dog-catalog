@@ -28,7 +28,12 @@ function DogList({ dogData }) {
 
   return (
 
-    <Box sx={{ p: 4, borderRadius: 'md', boxShadow: 'lg', maxWidth: '900px', minWidth: '500px', xs:'100%', minHeight: '100%', margin: 'auto' }}>
+    <Box sx={{ p: 4, borderRadius: 'md', boxShadow: 'lg', maxWidth: '900px', minHeight: '100%', margin: 'auto', 
+      width: {
+        xs: '100%',
+        lg: `500px`
+      }
+    }}>
       <Box sx={{ mb: 3 }}>
         <FormControl fullWidth variant="outlined">
           <InputLabel htmlFor="search">Search breeds</InputLabel>
