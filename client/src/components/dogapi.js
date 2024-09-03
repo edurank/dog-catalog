@@ -4,7 +4,7 @@ import axios from 'axios'
 export const getTestData = () => {
     var config = {
         method: 'GET',
-        url: 'http://172.19.0.2/utils/popular.php'
+        url: 'https://dog-catalog.onrender.com/utils/popular.php'
     }
 
     return axios(config)
@@ -77,7 +77,7 @@ export const GetDogImage = (id) => {
 export const getPopularByCountry = (id) => {
     var config = {
         method: 'GET',
-        url: 'http://172.19.0.2/utils/popular-by-country.php?country='+id
+        url: 'https://dog-catalog.onrender.com/utils/popular-by-country.php?country='+id
     }
 
     return axios(config)
